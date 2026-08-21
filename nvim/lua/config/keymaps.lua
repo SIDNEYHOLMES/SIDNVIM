@@ -7,7 +7,7 @@ auto-discover it. No need to register mappings in which-key.lua.
 Architecture:
   - Global keybindings:   here in keymaps.lua
   - Plugin keybindings:   in each plugin file (telescope, conform, etc.)
-  - LSP keybindings:      in lsp/lspconfig.lua (buffer-local via LspAttach)
+  - LSP keybindings:      in lsp/servers.lua (buffer-local via LspAttach)
   - which-key groups:     in which-key.lua (only group prefixes, auto-discovers rest)
 
 Leader key = Space. Press Space then wait — which-key shows all available commands.

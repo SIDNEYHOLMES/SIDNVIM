@@ -8,7 +8,7 @@ attributes — no need to register individual mappings here.
 Architecture (one source of truth):
   - keymaps.lua:         All global keybindings with `desc` attributes
   - Plugin files:        Plugin-specific keybindings with `desc` attributes
-  - lsp/lspconfig.lua:   LSP keybindings with `desc` attributes
+  - lsp/servers.lua:     LSP keybindings with `desc` attributes
   - which-key.lua:       ONLY group prefixes (so "Leader" and "Buffer" labels show)
 
 To add a new keybinding:

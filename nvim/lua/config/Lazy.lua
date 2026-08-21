@@ -9,9 +9,9 @@ This file:
 Plugin specs are organized in lua/plugins/ by category:
   ui/       - Visual plugins (colorscheme, statusline, dashboard, etc.)
   editor/   - Editor enhancements (treesitter, telescope, neo-tree, etc.)
-  lsp/      - LSP and completion (mason, lspconfig, cmp, etc.)
+  lsp/      - LSP and completion (mason, cmp, vim.lsp.config)
   lang/     - Language-specific (markdown, obsidian)
-  git/      - Git integration (git-conflict)
+  git/      - Git integration (neogit, gitsigns, diffview)
 
 NOTE: mapleader is set in keymaps.lua (loaded before this file).
 --]]
