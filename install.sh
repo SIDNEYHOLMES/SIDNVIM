@@ -41,11 +41,21 @@ install_deps() {
       sudo apt-get update
       sudo apt-get install -y make gcc unzip curl git ripgrep fd-find tree-sitter-cli tmux
       if is_wsl; then sudo apt-get install -y xclip; else sudo apt-get install -y xclip wl-clipboard; fi
-      # Neovim stable via PPA (Ubuntu's repo version is too old)
+      # Neovim stable via official release tarball (distro-agnostic, always current)
       if ! command -v nvim >/dev/null 2>&1; then
-        sudo add-apt-repository ppa:neovim-ppa/stable -y
-        sudo apt-get update
-        sudo apt-get install -y neovim
+        local arch asset
+        arch="$(uname -m)"
+        case "$arch" in
+          x86_64)  asset="nvim-linux-x86_64.tar.gz" ;;
+          aarch64) asset="nvim-linux-arm64.tar.gz" ;;
+          *) warn "unsupported arch $arch; install neovim manually"; asset="" ;;
+        esac
+        if [ -n "$asset" ]; then
+          curl -fLo /tmp/nvim.tar.gz "https://github.com/neovim/neovim/releases/latest/download/$asset"
+          sudo tar -C /usr/local --strip-components=1 -xzf /tmp/nvim.tar.gz
+          rm -f /tmp/nvim.tar.gz
+          ok "installed neovim (latest release)"
+        fi
       fi
       # Ubuntu ships fd as `fdfind`; telescope expects `fd`
       if command -v fdfind >/dev/null 2>&1 && ! command -v fd >/dev/null 2>&1; then
