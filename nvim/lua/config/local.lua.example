@@ -1,0 +1,22 @@
+-- Local configuration — NOT tracked by git.
+--
+-- Copy this file to `local.lua` in this same directory (or run install.sh,
+-- which generates it for you) and fill in your paths.
+--
+-- Every field is optional. If `local.lua` is missing, SIDNVIM falls back
+-- to the defaults shown below, so the config still loads cleanly.
+return {
+  -- Directory opened by the dashboard "Projects" button (<leader>-independent `p`).
+  projects = '~/code',
+
+  -- Obsidian vault / notes directory. Used by:
+  --   * the dashboard "Notes (Obsidian)" button
+  --   * obsidian.nvim as its vault base (workspaces are discovered from here)
+  notes = '~/Documents/Notes/Obsidian',
+
+  -- Command used to open URLs / files from nvim (gx, obsidian link-follow).
+  --   'auto'          detect: xdg-open on native Linux, explorer.exe on WSL
+  --   'xdg-open'      force native Linux
+  --   'explorer.exe'  force WSL
+  open_cmd = 'auto',
+}
