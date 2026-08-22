@@ -1,8 +1,7 @@
 # SIDNVIM
 
-Sidney's personal Neovim + tmux configuration — a single, documented source of
-truth for programming, note taking, and networking. Built to install cleanly on
-any Linux distro or WSL.
+My personal Neovim + tmux configuration — a single, documented source of
+truth for programming and note taking (networking coming soon). Built to install cleanly on Linux / WSL.
 
 Neovim config is a modular rewrite of
 [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim), organized into
@@ -13,9 +12,7 @@ Vim-style keybinding scheme.
 ## Quick start
 
 ```bash
-git clone https://github.com/SIDNEYHOLMES/SIDNVIM.git ~/.config/sidnvim
-cd ~/.config/sidnvim
-./install.sh
+git clone https://github.com/SIDNEYHOLMES/SIDNVIM.git ~/.config/sidnvim && cd ~/.config/sidnvim && ./install.sh
 ```
 
 `install.sh`:
