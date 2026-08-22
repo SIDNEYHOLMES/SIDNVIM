@@ -22,7 +22,7 @@ local opts = { noremap = true, silent = true }
 
 -- ── Dashboard Mappings ───────────────────────────────────────────
 -- F1 brings the dashboard(home page) to view
-map('n', '<F1>', ':Alpha<CR>', opts)
+map('n', '<leader>!', ':Alpha<CR>', {desc = "Dashboard"})
 
 -- ── Terminal ─────────────────────────────────────────────────────
 -- Double Escape exits terminal mode back to normal mode
