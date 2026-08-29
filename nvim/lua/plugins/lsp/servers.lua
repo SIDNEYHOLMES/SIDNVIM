@@ -10,7 +10,10 @@ LSP keybindings are set up via LspAttach autocmd below.
 --]]
 return {
   'hrsh7th/cmp-nvim-lsp', -- provides default_capabilities()
-  event = 'VeryLazy',
+  -- Load eagerly (no `event`) so vim.lsp.enable() runs at startup, BEFORE any
+  -- file is opened. With `event = 'VeryLazy'` the servers are enabled only
+  -- after the first buffer is already open, and the re-attach path
+  -- (doautoall) is unreliable — leaving the LSP client unattached.
   config = function()
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
@@ -114,6 +117,9 @@ return {
         'tailwind.config.cjs', 'postcss.config.js', 'postcss.config.mjs',
         'package.json', '.git',
       },
+      -- Tailwind v4 has no tailwind.config.js — config lives in CSS via
+      -- `@import "tailwindcss"`. The server auto-detects the CSS entrypoint
+      -- (including under src/ in Vite projects), so no configFile is needed.
     })
 
     -- ── ts_ls ───────────────────────────────────────────────────────
