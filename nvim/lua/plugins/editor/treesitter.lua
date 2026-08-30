@@ -16,44 +16,45 @@ nvim-treesitter-textobjects is configured in its own spec
 (treesitter-textobjects.lua).
 --]]
 return {
-  "nvim-treesitter/nvim-treesitter",
-  build = ":TSUpdate",
+  'nvim-treesitter/nvim-treesitter',
+  build = ':TSUpdate',
   config = function()
-    require("nvim-treesitter").setup()
+    require('nvim-treesitter').setup()
 
     -- Parsers wanted by nvim-ts-autotag.
     local parsers = {
-      "lua", "vim", "vimdoc",
-      "typescript", "javascript", "tsx",
-      "html", "css",
-      "bash",
-      "python",
-      "c_sharp",
-      "markdown", "markdown_inline",
+      'lua',
+      'vim',
+      'vimdoc',
+      'typescript',
+      'javascript',
+      'tsx',
+      'html',
+      'css',
+      'bash',
+      'python',
+      'c_sharp',
+      'markdown',
+      'markdown_inline',
     }
 
     -- Install missing parsers synchronously (no-op when already installed).
-    local ts = require("nvim-treesitter")
-    local installed = ts.get_installed("parsers")
-    local missing = vim.tbl_filter(function(p)
-      return not vim.tbl_contains(installed, p)
-    end, parsers)
+    local ts = require 'nvim-treesitter'
+    local installed = ts.get_installed 'parsers'
+    local missing = vim.tbl_filter(function(p) return not vim.tbl_contains(installed, p) end, parsers)
 
     if #missing > 0 then
-      vim.notify("Installing treesitter parsers: " .. table.concat(missing, ", "),
-        vim.log.levels.INFO, { title = "nvim-treesitter" })
+      vim.notify('Installing treesitter parsers: ' .. table.concat(missing, ', '), vim.log.levels.INFO, { title = 'nvim-treesitter' })
       ts.install(missing):wait(300000)
     end
 
     -- Enable treesitter highlighting for any filetype that has a parser.
     -- (The new nvim-treesitter no longer enables it globally on its own.)
-    -- NOTE: get_parser returns nil (does not throw) when there's no parser
-    -- for the filetype (e.g. neo-tree), so check the return value directly.
-    vim.api.nvim_create_autocmd("FileType", {
+    -- NOTE: get_parser/start THROW when there's no parser for the filetype
+    -- (e.g. neo-tree). language.add returns true only when a parser exists.
+    vim.api.nvim_create_autocmd('FileType', {
       callback = function(args)
-        if vim.treesitter.get_parser(args.buf) then
-          vim.treesitter.start(args.buf)
-        end
+        if vim.treesitter.language.add(vim.bo[args.buf].filetype) then vim.treesitter.start(args.buf) end
       end,
     })
   end,

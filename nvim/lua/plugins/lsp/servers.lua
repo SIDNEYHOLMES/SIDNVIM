@@ -68,7 +68,7 @@ return {
     setup('omnisharp', {
       cmd = function(dispatchers, _)
         return vim.lsp.rpc.start({
-          vim.fn.executable('OmniSharp') == 1 and 'OmniSharp' or 'omnisharp',
+          vim.fn.executable 'OmniSharp' == 1 and 'OmniSharp' or 'omnisharp',
           '-z',
           '--hostPID',
           tostring(vim.fn.getpid()),
@@ -97,25 +97,85 @@ return {
       },
     })
 
+    -- ── clangd (c, c++) ──────────────────────────────────────────────────────
+    setup('clangd', {
+      cmd = { 'clangd', '--background-index' },
+      filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
+      root_markers = {
+        '.clangd',
+        '.clang-tidy',
+        '.clang-format',
+        'compile_commands.json',
+        'compile_flags.txt',
+        'configure.ac', -- AutoTools
+        '.git',
+      },
+    })
+
     -- ── tailwindcss ──────────────────────────────────────────────────
     setup('tailwindcss', {
       cmd = { 'tailwindcss-language-server', '--stdio' },
       filetypes = {
-        'aspnetcorerazor', 'astro', 'astro-markdown', 'blade',
-        'clojure', 'django-html', 'htmldjango', 'edge', 'eelixir',
-        'elixir', 'ejs', 'erb', 'eruby', 'gohtml', 'gohtmltmpl',
-        'haml', 'handlebars', 'hbs', 'html', 'htmlangular',
-        'html-eex', 'heex', 'jade', 'leaf', 'liquid', 'markdown',
-        'mdx', 'mustache', 'njk', 'nunjucks', 'php', 'razor',
-        'slim', 'twig', 'css', 'less', 'postcss', 'sass', 'scss',
-        'stylus', 'sugarss', 'javascript', 'javascriptreact',
-        'reason', 'rescript', 'typescript', 'typescriptreact',
-        'vue', 'svelte', 'templ',
+        'aspnetcorerazor',
+        'astro',
+        'astro-markdown',
+        'blade',
+        'clojure',
+        'django-html',
+        'htmldjango',
+        'edge',
+        'eelixir',
+        'elixir',
+        'ejs',
+        'erb',
+        'eruby',
+        'gohtml',
+        'gohtmltmpl',
+        'haml',
+        'handlebars',
+        'hbs',
+        'html',
+        'htmlangular',
+        'html-eex',
+        'heex',
+        'jade',
+        'leaf',
+        'liquid',
+        'markdown',
+        'mdx',
+        'mustache',
+        'njk',
+        'nunjucks',
+        'php',
+        'razor',
+        'slim',
+        'twig',
+        'css',
+        'less',
+        'postcss',
+        'sass',
+        'scss',
+        'stylus',
+        'sugarss',
+        'javascript',
+        'javascriptreact',
+        'reason',
+        'rescript',
+        'typescript',
+        'typescriptreact',
+        'vue',
+        'svelte',
+        'templ',
       },
       root_markers = {
-        'tailwind.config.js', 'tailwind.config.ts', 'tailwind.config.mjs',
-        'tailwind.config.cjs', 'postcss.config.js', 'postcss.config.mjs',
-        'package.json', '.git',
+        'tailwind.config.js',
+        'tailwind.config.ts',
+        'tailwind.config.mjs',
+        'tailwind.config.cjs',
+        'postcss.config.js',
+        'postcss.config.mjs',
+        'package.json',
+        '.git',
       },
       -- Tailwind v4 has no tailwind.config.js — config lives in CSS via
       -- `@import "tailwindcss"`. The server auto-detects the CSS entrypoint
@@ -126,13 +186,21 @@ return {
     setup('ts_ls', {
       cmd = { 'typescript-language-server', '--stdio' },
       filetypes = {
-        'javascript', 'javascriptreact',
-        'typescript', 'typescriptreact',
+        'javascript',
+        'javascriptreact',
+        'typescript',
+        'typescriptreact',
       },
       root_markers = {
-        'package-lock.json', 'yarn.lock', 'pnpm-lock.yaml',
-        'bun.lockb', 'bun.lock', 'tsconfig.json', 'jsconfig.json',
-        'package.json', '.git',
+        'package-lock.json',
+        'yarn.lock',
+        'pnpm-lock.yaml',
+        'bun.lockb',
+        'bun.lock',
+        'tsconfig.json',
+        'jsconfig.json',
+        'package.json',
+        '.git',
       },
     })
 
@@ -140,9 +208,7 @@ return {
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('UserLspKeymaps', {}),
       callback = function(ev)
-        local map = function(keys, func, desc)
-          vim.keymap.set('n', keys, func, { buffer = ev.buf, desc = desc })
-        end
+        local map = function(keys, func, desc) vim.keymap.set('n', keys, func, { buffer = ev.buf, desc = desc }) end
         map('gd', vim.lsp.buf.definition, 'Go to definition')
         map('gr', vim.lsp.buf.references, 'References')
         map('K', vim.lsp.buf.hover, 'Hover')
