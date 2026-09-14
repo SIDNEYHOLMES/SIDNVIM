@@ -17,7 +17,7 @@ Key mappings:
   Ctrl-y       Confirm selection (standard vim completion key)
   Enter        Confirm selection
   Ctrl-n/p     Select next/prev item in popup
-  Tab          Select next item, or expand snippet, or normal Tab
+  Tab          Select next item, or jump to next snippet placeholder, or normal Tab
   Shift-Tab    Select prev item, or jump back in snippet
 
 NOTE: select = false means you must explicitly pick an item before confirming.
@@ -60,12 +60,13 @@ return {
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
         ["<C-n>"] = cmp.mapping.select_next_item(),
         ["<C-p>"] = cmp.mapping.select_prev_item(),
-        -- Tab: navigate popup, expand snippet, or normal Tab
+        -- Tab: navigate popup, jump to next snippet placeholder, or normal Tab
+        -- (normal Tab indents to next tab stop via 'softtabstop')
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
+          elseif luasnip.jumpable(1) then
+            luasnip.jump(1)
           else
             fallback()
           end
