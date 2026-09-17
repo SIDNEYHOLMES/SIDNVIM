@@ -6,6 +6,7 @@ vim.opt.relativenumber = true -- relative line numbers
 vim.opt.mouse = 'a' -- enable mouse
 vim.opt.tabstop = 2 -- tab = 2 spaces
 vim.opt.shiftwidth = 2 -- indent = 2 spaces
+vim.opt.softtabstop = 2 -- Tab inserts spaces to next tab stop (VSCode-style)
 vim.opt.expandtab = true -- tabs → spaces
 vim.opt.smartindent = true
 vim.opt.wrap = false -- no line wrapping
