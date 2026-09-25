@@ -22,7 +22,7 @@ local opts = { noremap = true, silent = true }
 
 -- ── Dashboard Mappings ───────────────────────────────────────────
 -- F1 brings the dashboard(home page) to view
-map('n', '<leader>!', ':Alpha<CR>', {desc = "Dashboard"})
+map('n', '<leader>!', ':Alpha<CR>', { desc = "Dashboard" })
 
 -- ── Terminal ─────────────────────────────────────────────────────
 -- Double Escape exits terminal mode back to normal mode
@@ -107,10 +107,11 @@ end, { desc = 'Open URL under cursor' })
 --
 -- NOTE: <leader>b1 goes to the FIRST listed buffer, NOT buffer number 1.
 -- Uses getbufinfo() to get the i-th buffer from the listed list.
-map('n', '<leader>bn', '<cmd>bnext<CR>', { desc = 'Next buffer' })
-map('n', '<leader>bp', '<cmd>bprevious<CR>', { desc = 'Previous buffer' })
+map('n', '<leader>bu', '<cmd>bnext<CR>', { desc = 'Next buffer' })
+map('n', '<leader>bd', '<cmd>bprevious<CR>', { desc = 'Previous buffer' })
 map('n', '<leader>bq', '<cmd>bdelete<CR>', { desc = 'Delete buffer' })
 map('n', '<leader>bo', '<cmd>BufferLineCloseOthers<CR>', { desc = 'Close other buffers' })
+map('n', '<leader>bc', '<cmd>tabnew<CR>', { desc = 'Create new buffer' })
 for i = 1, 9 do
   map('n', '<leader>b' .. i, function()
     -- Get listed buffers in order (matches bufferline display order)
