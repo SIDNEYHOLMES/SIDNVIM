@@ -33,6 +33,11 @@ map('t', '<Esc><Esc>', '<C-\\><C-n>', opts)
 map('v', 'J', ":m '>+1<CR>gv=gv", opts)
 map('v', 'K', ":m '<-2<CR>gv=gv", opts)
 
+-- ── Copy to clipboard ───────────────────────────────────────────
+-- Ctrl+C copies visual selection to system clipboard (like other editors)
+map('v', '<C-c>', '"+y', opts)
+map('x', '<C-c>', '"+y', opts)
+
 -- ── Navigation: keep cursor centered ───────────────────────────
 -- Ctrl-d/u scroll half-page but keep cursor centered
 -- n/N keep search results centered with some context
