@@ -22,6 +22,11 @@ return {
     'MunifTanjim/nui.nvim',
   },
   opts = {
+    -- When opening a file, do not replace windows of these filetypes/buftypes.
+    -- Default also includes "terminal", which forces a split when the current
+    -- window is a `:term` buffer. Removed so selecting a file replaces the
+    -- terminal like any other buffer.
+    open_files_do_not_replace_types = { "Trouble", "qf", "edgy" },
     filesystem = {
       filtered_items = { hide_dotfiles = false, hide_gitignored = true },
       follow_current_file = { enabled = true },
