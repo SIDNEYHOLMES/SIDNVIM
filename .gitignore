@@ -7,3 +7,4 @@ nvim/lua/config/local.lua
 *~
 tags
 .DS_Store
+lazy-lock.json

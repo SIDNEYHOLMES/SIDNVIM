@@ -27,6 +27,7 @@ Managed by [lazy.nvim](https://github.com/folke/lazy.nvim). Specs live in
 | [nvim-surround](https://github.com/kylechui/nvim-surround) | Surround text objects |
 | [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag) | Auto-close/rename HTML tags |
 | [vim-visual-multi](https://github.com/mg979/vim-visual-multi) | Multi-cursor |
+| [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) | Code folding (VSCode-style, treesitter provider) |
 
 ## LSP & completion
 

@@ -50,6 +50,16 @@ available commands grouped by prefix.
 | `J` / `K` (visual mode) | Move selected lines down/up with auto-indent |
 | `<leader>f` | Format buffer (conform.nvim) |
 
+## Folding (nvim-ufo)
+
+Native `z` fold keys also work: `za` toggle, `zc`/`zo` close/open, `zC`/`zO` recursive.
+
+| Key | Action |
+| --- | --- |
+| `zR` | Open all folds |
+| `zM` | Close all folds |
+| `zK` | Peek folded lines (floating preview) |
+
 ## Multi-cursor (vim-visual-multi)
 
 | Key | Action |
